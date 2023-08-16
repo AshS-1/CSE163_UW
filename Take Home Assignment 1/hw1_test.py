@@ -1,6 +1,4 @@
 '''
-Ashwika Sharma
-Section AC
 Testing the functions for the Primer assessment.
 '''
 import hw1

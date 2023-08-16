@@ -1,5 +1,4 @@
 '''
-Ashwika Sharma
 Section AC
 Implementing the functions for the Primer assessment.
 '''

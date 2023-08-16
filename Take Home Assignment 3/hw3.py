@@ -1,6 +1,4 @@
 '''
-Ashwika Sharma
-Section AC
 Implements the functions of HW3: Education. Using a dataset from the National
 Center for Education Statistics that gives information on the percentage of
 people from 25-29 with specific levels of education by race/ethnicity and sex

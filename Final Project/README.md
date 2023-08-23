@@ -36,6 +36,7 @@ https://ourworldindata.org/grapher/drivers-forest-loss-brazil-amazon?time=2002..
 This csv dataset is about the causes of forest loss in the Amazon from 2001 to 2013. It has data on how many hectares of forest are either deforested or degraded each year due to causes such as fires, flooding, mining, etc.
 The columns are Entity, Code, Year, flooding_due_to_dams, natural_disturbances, fire, selective_logging, other_infrastructure, roads, mining, small-scale_clearing, tree_plantations_including_palm, pasture, and commercial_crops. The Entity and Code both refer to the country, which is Brazil for all rows. 
 This dataset was used to look into what were the leading causes of forest loss in the Amazon and how has this dynamic changed over time.
+
 Method:
 Research Question 1: What are the regions in the Amazon Rainforest that experience the greatest deforestation?
 1.	Merge the datasets data_counties and data_all, so that the IDs in data_all correspond with a county name that is given in data_counties
@@ -46,6 +47,7 @@ Research Question 1: What are the regions in the Amazon Rainforest that experien
 6.	Train the model as a DecisionTreeClassifier()
 7.	Make predictions
 8.	Print the accuracy scores for the train and test data.
+   
 Research Question 2: What is the trend in the number of forest fires in the Amazon rainforest by year? Does this correlate with an increase in rainforest temperature?
 1.	The parameters of my function take in pd.DataFrame fire_data, and temp_data. They correspond to the dataset on firespots and temperature over time. These files have already been read in the main method.
 2.	Filtering and modifying temp_data:
@@ -61,6 +63,7 @@ a.	Saved the figure as yearly_fire.png
 5.	Merged the two DataFrames yearly_fire and temp_interval (the modified temperature dataset) by year.
 6.	Plot a scatterplot of the merged data using the plotly library. The scatterplot shows the number of firespots as a function of temperature.
 a.	Saved the figure as temp_fire.png
+
 Research Question 3: What are the leading causes of deforestation from 2001-2013? If there are certain leading causes prevalent throughout most of the decade, what is their trend over the years?
 1.	The parameters of this function take in pd.DataFrame data. This corresponds to the dataset on leading causes of deforestation, and the csv file was read in the main method.
 2.	Created a figure with four axes using plt.subplots
@@ -72,18 +75,20 @@ d.	Create a pie chart with the values and categories using seaborn.
 i.	Each pie chart is on a different axis for the same figure.
 4.	Plt.tight_layout(), plt.title(), plt.savefig(‘leading_causes_subplot.png’) as final adjustments to the overall figure.
 5.	Create a bar graph with the plotly library that shows how land used for pastures changed over time, with x as ‘Year’ and y as ‘pasture’
+   
 Results:
 Research Question 1: How can we model which regions in the Amazon Rainforest experience deforestation?
 I decided to use a ML model to predict what regions experience deforestation. This model made a decision tree that used the columns from the dataset provided, such as total area of county, area deforested, forest area, area covered by clouds, non-observed area, non-forest area, and hydrography area, as features to predict the label of which regions were most likely to experience deforestation.
 Above is the visualization for my decision tree. I had to make the maximum depth 5 because there were thousands of data points and they would not fit in this image.
 The decision tree model that I created had a train accuracy of 1.0 and a test accuracy of approximately 0.94. Anything between a 70-90% test accuracy indicates that the ML model is performing well and accurately, and is consistent with industry standards. My ML model has a test accuracy of 94% which is way above the threshold for a good ML model.
-Research Question 2: What is the trend in the number of forest fires in the Amazon rainforest by year? Does this correlate with an increase in rainforest temperature?
 
+Research Question 2: What is the trend in the number of forest fires in the Amazon rainforest by year? Does this correlate with an increase in rainforest temperature?
 I used a line graph to plot the number of firespots/fire outbreaks from 1999 to 2019. What’s important to notice is that there were relatively low numbers of fire outbreaks in 1999 (around 60K), but there was a dramatic jump in the number of fire outbreaks (400-500% increase since 1999). The graph shows that it reaches a peak in 2001, however, it then starts to decrease.
 It's surprising to see that following the peak of forest fires in 2001, the number of fire outbreaks decreased significantly, even reaching levels comparable to 1999 by 2019. A possible reason for this could be an increase in climate agreements and increased awareness about the forest degradation in the Amazon Rainforest, which could have led to measures that deal with better prevention/dealing with forest fires.
 One of the reasons why this finding was so interesting to me was because I always correlated increased temperature with greater numbers of forest fires. Because of global warming, which leads to increased temperature, I thought that there would be more forest fires in recent years, which isn’t the case as seen in the graph. I decided to expand upon this observation and look into whether there was any observable correlation between the highest temperature and number of firespots in a year. I chose to look at the highest temperature as a representative of a year’s temperature because I assumed that greater numbers of forest fires occur in seasons where the temperature was already very high, so it seemed irrelevant/more difficult to look at lower temperatures. I plotted a scatter plot with the yearly high temperature being the x axis and the number of firespots as the y-axis.
 The results were not at all aligned with some of the assumptions I had. The scatterplot shows datapoints with no obvios trend – they are all over the graph with no clear pattern. Temperature seems to have no bearing on the number of forest fires there are in a year, because we can see a large variety (lows and highs) of fire outbreak quantities, regardless of it being a relatively high or low temperature. The data shows that the yearly high temperature (in Celsius) does not correlate with the number of fire outbreaks.
 A possible explanation for this observation may be that high temperatures lead to drier conditions which makes regions more susceptible to fires. As the Amazon Rainforest is extremely humid, higher temperatures may not create a noticeable amount of “dryness” that can lead to a visible change in fire outbreaks.
+
 Research Question 3: What are the leading causes of deforestation from 2001-2013? If there are certain leading causes prevalent throughout most of the decade, what is their trend over the years?
 Using my csv file on deforestation causes, I decided to create 4 pie charts, focusing on the distribution of how much land each cause had affected, based on equal intervals from my time frame. Thus, I created four pie charts from 2013, 2009, 2005, and 2001 to see if there was any specific cause of deforestation/degradation that stood out or had a significant impact.
 As seen in the pie charts pastures take up the majority of deforested land. In recent years, it makes up for around 50% of all deforested land, however in previous years such as 2005 and 2001 it made up for over 2/3 of that land. Following pastures, small scale clearing are the next leading cause, and their purpose is also similar to that of pastures – agriculture and livestock.
@@ -91,14 +96,10 @@ I wasn’t expecting to see that one cause would lead to such a “monopoly” o
 I wanted to look into how the number of hectares of land did pastures take up and how that changed over the timeframe (2001-2013). This was represented in a bar graph, as seen below.
 This graph shows that the amount of land cleared out for pastures jumped significantly from 2001 to 2002 and remained relatively constant at that high value from 2002 to 2005, and then decreased sharply. This aligns with the pie charts as they show why the percentage of total deforested land decreased from 67% to 52% over the years.
 Surprisingly, this also aligns with Research Question #2, in which I noticed that the number of forest fires had a peak in 2001 and then decreased steadily. While I can’t be sure about how minimizing pastures leads to less forest fires, definitely it shows that 2001-2002 may have been a turning point for the Amazon Rainforest.
+
 Impact and Limitations:
 To a certain extent, these results bring optimism. They give an alternative perspective to the common understanding that the environment of the world is getting worse by showing how deforestation, forest fires, and pasture usage decreases, by showing that things are getting better, but there’s still a long way to go. It clearly identifies pastures as a leading cause of deforestation, so these results will be useful in increasing awareness to minimize clearing land for these purposes. Unfortunately, my results don’t mean that the Amazon Rainforest is being unharmed, it just means that the level of harm may not be as high as we commonly think it is. These results shouldn’t be interpreted as a way for people to justify current unstable, detrimental actions, rather it should show how increased awareness and consciousness of actions can go a long way in protecting the environment. A limitation is that some of this data goes to 2013, which is 10 years ago. A lot can happen in 10 years, so I think my results and models need to include those missing 10 years to come up with conclusions that are immediately relevant to right now. Ranchers and farmers should use this research as a clear indicator about how actions such as clearing out land for pastures leads to detrimental impacts to the rainforest.
-Challenge Goals:
-Firstly, I met the challenge goal of Machine Learning. I trained and tested a decision tree model that used the statistics about each region in the Amazon such as forested area, hydrography, etc. as features to predict the label of which regions were likely to have deforestation. The ML model had an accuracy score of 0.94, which is relatively high. 
-I also used a new library, Plotly to create most of my graphs (excluding the pie charts). I found it really useful in creating clean graphs that minimized complex, buggy code that would have been needed in spacing out text and making the colors match.
-Lastly, I merged my datasets for my first and second research questions. For my first research question, I needed to merge the IDs for the regions in one dataset with a dataset that showed what counties the IDs corresponded to. In my second research question, I had to merge the data on how many fire outbreaks there were in a year with the highest temperature in that year, so that I could plot a graph that would show if the number of fire outbreaks and highest temperature in the same year would show some sort of correlation.
-Work Plan Evaluation:
-I did this project individually, so I didn’t set very strict deadlines for each of the components of my work. I started 4 days before the due date, and I decided that I was going to set up the environment and start the basic coding on Sunday and get the majority of my graphing/visualizations done by Monday. Unfortunately, I didn’t know how to import plotly until Tuesday so that slowed me down greatly. I had planned to work on the ML model portion two days before the deadline, and surprisingly it took much less time than I had anticipated, so I was able to use that time to catch up with my visualizations. However, because everything was only ready by the morning of the due date, I had to write the entire paper and record the video in one day. It was definitely a time crunch that I had anticipated.
+
 Testing:
 Research Question 1:
 To test the ML model, I applied the same code on a smaller dataset with only 20% of the data values. Above is the decision tree visualization. 
@@ -120,6 +121,4 @@ Even in this graph, we can see that there is a peak in 2004 and the number of he
 Collaboration:
 https://www.worldwildlife.org/threats/deforestation-and-forest-degradation#:~:text=Deforestation%20and%20forest%20degradation%20are,frequency%20of%20extreme%20weather%20events.  Information about Deforestation
 https://animlbook.com/classification/trees/index.html  Helped me with constructing my ML model
-
-![image](https://github.com/AshS-1/CSE163_UW/assets/108997371/a4c0b0b9-f43c-462b-924f-eeed09a18476)
 

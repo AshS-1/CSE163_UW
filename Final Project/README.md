@@ -66,6 +66,7 @@ a.	Saved the figure as yearly_fire.png
 a.	Saved the figure as temp_fire.png
 
 Research Question 3: What are the leading causes of deforestation from 2001-2013? If there are certain leading causes prevalent throughout most of the decade, what is their trend over the years?
+
 1.	The parameters of this function take in pd.DataFrame data. This corresponds to the dataset on leading causes of deforestation, and the csv file was read in the main method.
 2.	Created a figure with four axes using plt.subplots
 3.	For each of the years 2013, 2009, 2005, and 2001
@@ -78,12 +79,15 @@ i.	Each pie chart is on a different axis for the same figure.
 5.	Create a bar graph with the plotly library that shows how land used for pastures changed over time, with x as ‘Year’ and y as ‘pasture’
    
 Results:
+
 Research Question 1: How can we model which regions in the Amazon Rainforest experience deforestation?
+
 I decided to use a ML model to predict what regions experience deforestation. This model made a decision tree that used the columns from the dataset provided, such as total area of county, area deforested, forest area, area covered by clouds, non-observed area, non-forest area, and hydrography area, as features to predict the label of which regions were most likely to experience deforestation.
 Above is the visualization for my decision tree. I had to make the maximum depth 5 because there were thousands of data points and they would not fit in this image.
 The decision tree model that I created had a train accuracy of 1.0 and a test accuracy of approximately 0.94. Anything between a 70-90% test accuracy indicates that the ML model is performing well and accurately, and is consistent with industry standards. My ML model has a test accuracy of 94% which is way above the threshold for a good ML model.
 
 Research Question 2: What is the trend in the number of forest fires in the Amazon rainforest by year? Does this correlate with an increase in rainforest temperature?
+
 I used a line graph to plot the number of firespots/fire outbreaks from 1999 to 2019. What’s important to notice is that there were relatively low numbers of fire outbreaks in 1999 (around 60K), but there was a dramatic jump in the number of fire outbreaks (400-500% increase since 1999). The graph shows that it reaches a peak in 2001, however, it then starts to decrease.
 It's surprising to see that following the peak of forest fires in 2001, the number of fire outbreaks decreased significantly, even reaching levels comparable to 1999 by 2019. A possible reason for this could be an increase in climate agreements and increased awareness about the forest degradation in the Amazon Rainforest, which could have led to measures that deal with better prevention/dealing with forest fires.
 One of the reasons why this finding was so interesting to me was because I always correlated increased temperature with greater numbers of forest fires. Because of global warming, which leads to increased temperature, I thought that there would be more forest fires in recent years, which isn’t the case as seen in the graph. I decided to expand upon this observation and look into whether there was any observable correlation between the highest temperature and number of firespots in a year. I chose to look at the highest temperature as a representative of a year’s temperature because I assumed that greater numbers of forest fires occur in seasons where the temperature was already very high, so it seemed irrelevant/more difficult to look at lower temperatures. I plotted a scatter plot with the yearly high temperature being the x axis and the number of firespots as the y-axis.
@@ -91,6 +95,7 @@ The results were not at all aligned with some of the assumptions I had. The scat
 A possible explanation for this observation may be that high temperatures lead to drier conditions which makes regions more susceptible to fires. As the Amazon Rainforest is extremely humid, higher temperatures may not create a noticeable amount of “dryness” that can lead to a visible change in fire outbreaks.
 
 Research Question 3: What are the leading causes of deforestation from 2001-2013? If there are certain leading causes prevalent throughout most of the decade, what is their trend over the years?
+
 Using my csv file on deforestation causes, I decided to create 4 pie charts, focusing on the distribution of how much land each cause had affected, based on equal intervals from my time frame. Thus, I created four pie charts from 2013, 2009, 2005, and 2001 to see if there was any specific cause of deforestation/degradation that stood out or had a significant impact.
 As seen in the pie charts pastures take up the majority of deforested land. In recent years, it makes up for around 50% of all deforested land, however in previous years such as 2005 and 2001 it made up for over 2/3 of that land. Following pastures, small scale clearing are the next leading cause, and their purpose is also similar to that of pastures – agriculture and livestock.
 I wasn’t expecting to see that one cause would lead to such a “monopoly” over the total deforested land, but it makes sense, based on previous research that I’ve done about how it is hard for the agriculture sector to deal with the rapidly increasing world population, because existing agricultural land is being overused and depleted of its resources. The Amazon is a place where people may be interested in growing crops in. 
